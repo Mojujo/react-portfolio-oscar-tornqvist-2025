@@ -1,73 +1,40 @@
-# React + TypeScript + Vite
+# Portfolio Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **Web Application** built with **React, Typescript, Vite, Nginx and Docker**  <br />
+The application is a personal portfolio web application meant to display modern **CI/CD workflow** deployment using Azure. 
 
-Currently, two official plugins are available:
+The application is deployed in two separate ways:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Static Web App
+- Hosted via **Azure Static Web App** using free SKU
+- Builds and (re)deploys on `main` using **Github Actions CI/CD** on `Git Push`
+- https://wonderful-mushroom-03b1ae303.1.azurestaticapps.net
 
-## React Compiler
+### Dockerized App
+- Hosted via **Azure App Service** with App Service Plan
+- Container built using a **Dockerfile** and **Nginx** to create static image
+- Image is built locally and pushed to **Azure Container Registry** where **Azure App Service** automatically pulls and deploys the image.
+- https://demo-portfolio-gdceg9guddb5fccj.swedencentral-01.azurewebsites.net/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies
 
-## Expanding the ESLint configuration
+- React + Typescript
+- Vite
+- Azure 
+  - Static Web App
+  - Container Registry
+  - App Service
+- Nginx
+- Docker
+- Github Actions CI/CD
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Proccess
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+#### Resource Group containing all my relevant resources
+![Resource Group containing all my relevant resources](screenshots/Screenshot%202025-10-03%20214330.png)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+#### Static Web App
+![Static Web App](screenshots/Screenshot%202025-10-03%20215117.png)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+#### Dockerized App
+![Dockerized App](screenshots/Screenshot%202025-10-03%20215211.png)
